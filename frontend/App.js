@@ -10,7 +10,7 @@ import * as ImagePicker from 'expo-image-picker';
 // Define assets at the top level
 const BG_IMAGE = require('./assets/bg.jpeg');
 const LOGO_IMAGE = require('./assets/image.jpeg');
-
+const BASE_URL = "https://ingredient-ai-copilot-8d33.vercel.app/";
 export default function App() {
   const [loading, setLoading] = useState(false);
   const [insight, setInsight] = useState(null);
@@ -37,7 +37,7 @@ export default function App() {
   const sendToBackend = async (base64Data) => {
     setLoading(true);
     try {
-      const response = await fetch('http://10.41.68.132:3000/analyze', {
+      const response = await fetch(`${BASE_URL}/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ base64Image: base64Data }),
